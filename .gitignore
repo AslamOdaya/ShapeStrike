@@ -1,0 +1,11 @@
+.gradle/
+/.idea/
+android/libs/
+gradle/
+build/
+html/
+ios/
+local.properties
+*.iml
+settings.gradle
+projectFilesBackup/
