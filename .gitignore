@@ -9,3 +9,8 @@ local.properties
 *.iml
 settings.gradle
 projectFilesBackup/
+gradlew
+gradlew.bat
+gradle.properties
+
+
