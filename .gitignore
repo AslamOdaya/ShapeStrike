@@ -1,7 +1,6 @@
 .gradle/
 /.idea/
 android/libs/
-gradle/
 build/
 html/
 ios/
