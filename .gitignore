@@ -5,10 +5,8 @@ html/
 ios/
 local.properties
 *.iml
-settings.gradle
 projectFilesBackup/
-gradlew
-gradlew.bat
+
 
 
 
