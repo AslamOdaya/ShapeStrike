@@ -36,7 +36,8 @@ public class PlayScreen implements Screen {
     private float triangleGravity, diamondGravity, hexGravity;
     private Random random;
     private boolean renderObjects[], isRunOnceDia, isRunOnceTri, isRunOnceHex, isScoreShowable;
-    private int renderIndex; // index of object to be rendered
+    private int renderIndex, diamondIndex, triangleIndex, hexIndex;
+    private final int INDEX_MAX = 3;
     private int previousRandNum, score;
     private String[] diamondColourArr, triangleColourArr, hexColourArr, diamondSlotColourArr,
             triangleSlotColourArr, hexSlotColourArr, colours;
@@ -127,9 +128,15 @@ public class PlayScreen implements Screen {
 
 
         //choose random slot colour
-        diamondSlotName = diamondSlotColourArr[chooseRandomNum(4)];
-        triangleSlotName = triangleSlotColourArr[chooseRandomNum(4)];
-        hexSlotName = hexSlotColourArr[chooseRandomNum(4)];
+        diamondIndex = chooseRandomNum(4);
+        System.out.println("diamond index " + diamondIndex);
+        diamondSlotName = diamondSlotColourArr[diamondIndex];
+        triangleIndex = chooseRandomNum(4);
+        System.out.println("triangle index " + triangleIndex);
+        triangleSlotName = triangleSlotColourArr[triangleIndex];
+        hexIndex = chooseRandomNum(4);
+        System.out.println("hex index " + hexIndex);
+        hexSlotName = hexSlotColourArr[hexIndex];
 
 
         //instatiate all three shapes
@@ -257,7 +264,7 @@ public class PlayScreen implements Screen {
              * when the shape overlaps the slot (collides), derender the object, reset position to top
              * and choose a random colour for the next object that will be rendered.
              * Finally render a random object.
-             * CURRENTLY BUG WHERE SHAPE IS SHOWN FOR A SPLIT SECOND BEFORE RESETING, GIVING INACCURATE COLLISION
+             * CURRENTLY THERE IS A  BUG WHERE SHAPE IS SHOWN FOR A SPLIT SECOND FOR THE LAST COLLIDED SHAPE AFTER NEW SHAPE IS RENDERED
              */
 
 
@@ -356,26 +363,50 @@ public class PlayScreen implements Screen {
 
             //select a random colour for the slot every time it's pressed.
             if (diamondButton.isPressed()) {
+                System.out.println(diamondIndex);
+                if (diamondIndex < INDEX_MAX) {
+                    diamondSlotName = diamondSlotColourArr[++diamondIndex];
+                } else {
+                    diamondIndex = 0;
+                    diamondSlotName = diamondSlotColourArr[diamondIndex];
+                }
 
-                diamondSlotName = diamondSlotColourArr[chooseRandomNum(4)];
-                diamondSlot.setButtonStyle(diamondSlotName);
+                if (diamondSlotName != null) {
+                    diamondSlot.setButtonStyle(diamondSlotName);
+                }
             }
 
             if (triangleButton.isPressed()) {
+                System.out.println(triangleIndex);
+                if (triangleIndex < INDEX_MAX) {
 
-                triangleSlotName = triangleSlotColourArr[chooseRandomNum(4)];
-                triangleSlot.setButtonStyle(triangleSlotName);
+                    triangleSlotName = triangleSlotColourArr[++triangleIndex];
+                } else {
+                    triangleIndex = 0;
+                    triangleSlotName = triangleSlotColourArr[triangleIndex];
+                }
+
+                if (triangleSlotName != null) {
+                    triangleSlot.setButtonStyle(triangleSlotName);
+                }
             }
 
             if (hexButton.isPressed()) {
+                System.out.println(hexIndex);
+                if (hexIndex < INDEX_MAX) {
+                    hexSlotName = hexSlotColourArr[++hexIndex];
+                } else {
+                    hexIndex = 0;
+                    hexSlotName = hexSlotColourArr[hexIndex];
+                }
 
-                hexSlotName = hexSlotColourArr[chooseRandomNum(4)];
-                hexSlot.setButtonStyle(hexSlotName);
+                if (hexSlotName != null) {
+                    hexSlot.setButtonStyle(hexSlotName);
+                }
+
             }
 
         }
-
-
     }
 
 
