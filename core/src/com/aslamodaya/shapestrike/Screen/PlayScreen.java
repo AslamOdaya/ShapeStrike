@@ -27,6 +27,7 @@ import java.util.Timer;
 
 public class PlayScreen implements Screen {
 
+    private static final int INDEX_MAX = 3;
     private Texture background, slotBackground;
     private ShapeStrike game;
     private ShapeObject triangle, diamond, hexagon;
@@ -37,7 +38,6 @@ public class PlayScreen implements Screen {
     private Random random;
     private boolean renderObjects[], isRunOnceDia, isRunOnceTri, isRunOnceHex, isScoreShowable;
     private int renderIndex, diamondIndex, triangleIndex, hexIndex;
-    private final int INDEX_MAX = 3;
     private int previousRandNum, score;
     private String[] diamondColourArr, triangleColourArr, hexColourArr, diamondSlotColourArr,
             triangleSlotColourArr, hexSlotColourArr, colours;
