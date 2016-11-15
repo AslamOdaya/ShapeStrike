@@ -1,6 +1,6 @@
 package com.aslamodaya.shapestrike.Screen;
 
-import com.aslamodaya.shapestrike.Objects.ShapeObject;
+import com.aslamodaya.shapestrike.Objects.Shape;
 import com.aslamodaya.shapestrike.ShapeStrike;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -24,9 +24,9 @@ public class MenuScreen implements Screen {
 
 
     private Texture background;
-    private ShapeObject blueDiamond;
-    private ShapeObject magentaHexagon;
-    private ShapeObject redTriangle;
+    private Shape blueDiamond;
+    private Shape magentaHexagon;
+    private Shape redTriangle;
     private ShapeStrike game;
     private float diamondGravity, triangleGravity, hexGravity;
     private Vector2 diamondPos;
@@ -57,9 +57,9 @@ public class MenuScreen implements Screen {
         hexPos = new Vector2((ShapeStrike.WIDTH/2)+60, (ShapeStrike.HEIGHT/2)-75);
 
         //instatiate each shape
-        blueDiamond = new ShapeObject("blue diamond.png",diamondPos.x, diamondPos.y, 0.35f);
-        redTriangle = new ShapeObject("red triangle.png",trianglePos.x, trianglePos.y,0.35f);
-        magentaHexagon = new ShapeObject("magenta hexagon.png",hexPos.x, hexPos.y , 0.38f);
+        blueDiamond = new Shape("blue diamond.png",diamondPos.x, diamondPos.y, 0.35f);
+        redTriangle = new Shape("red triangle.png",trianglePos.x, trianglePos.y,0.35f);
+        magentaHexagon = new Shape("magenta hexagon.png",hexPos.x, hexPos.y , 0.38f);
 
 
         diamondGravity = diamondPos.y;

@@ -1,6 +1,6 @@
 package com.aslamodaya.shapestrike.Screen;
 
-import com.aslamodaya.shapestrike.Objects.ShapeObject;
+import com.aslamodaya.shapestrike.Objects.Shape;
 import com.aslamodaya.shapestrike.Objects.ShapeSlot;
 import com.aslamodaya.shapestrike.ShapeStrike;
 import com.badlogic.gdx.Gdx;
@@ -13,12 +13,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 
 import java.util.Random;
-import java.util.Timer;
 
 /**
  * Created by Aslam on 15/06/2016.
@@ -30,7 +28,7 @@ public class PlayScreen implements Screen {
     private static final int INDEX_MAX = 3;
     private Texture background, slotBackground;
     private ShapeStrike game;
-    private ShapeObject triangle, diamond, hexagon;
+    private Shape triangle, diamond, hexagon;
     private final Vector2 TRIANGLE_POS, DIAMOND_POS, HEX_POS;
     private FitViewport viewport;
     private OrthographicCamera cam;
@@ -48,6 +46,19 @@ public class PlayScreen implements Screen {
     private Rectangle diamondBox, diamondSltBox, triangleBox, triangleSltBox, hexBox, hexSltBox;
     private String scoreStr;
     private BitmapFont font;
+    private final String RED_COLOUR = "red";
+    private final String GREEN_COLOUR = "green";
+    private final String BLUE_COLOUR = "blue";
+    private final String MAGENTA_COLOUR = "magenta";
+    private final String DIAMOND_FILE_STRING = "diamond.png";
+    private final String TRIANGLE_FILE_STRING = "triangle.png";
+    private final String HEXAGON_FILE_STRING = "hexagon.png";
+
+
+
+
+
+
 
 
     public PlayScreen(ShapeStrike game) {
@@ -74,50 +85,50 @@ public class PlayScreen implements Screen {
         HEX_POS = new Vector2((ShapeStrike.WIDTH) - 100, ShapeStrike.HEIGHT + 30);
 
         colours = new String[4];
-        colours[0] = "red";
-        colours[1] = "green";
-        colours[2] = "blue";
-        colours[3] = "magenta";
+        colours[0] = RED_COLOUR;
+        colours[1] = GREEN_COLOUR;
+        colours[2] = BLUE_COLOUR;
+        colours[3] = MAGENTA_COLOUR;
 
 
         // colour names into arrays.
         diamondColourArr = new String[4];
-        diamondColourArr[0] = "green diamond.png";
-        diamondColourArr[1] = "red diamond.png";
-        diamondColourArr[2] = "blue diamond.png";
-        diamondColourArr[3] = "magenta diamond.png";
+        diamondColourArr[0] = RED_COLOUR + " "+DIAMOND_FILE_STRING ;
+        diamondColourArr[1] = GREEN_COLOUR + " "+DIAMOND_FILE_STRING;
+        diamondColourArr[2] = BLUE_COLOUR+ " "+DIAMOND_FILE_STRING;
+        diamondColourArr[3] = MAGENTA_COLOUR+" "+DIAMOND_FILE_STRING;
 
         triangleColourArr = new String[4];
-        triangleColourArr[0] = "red triangle.png";
-        triangleColourArr[1] = "green triangle.png";
-        triangleColourArr[2] = "blue triangle.png";
-        triangleColourArr[3] = "magenta triangle.png";
+        triangleColourArr[0] = RED_COLOUR+" "+TRIANGLE_FILE_STRING;
+        triangleColourArr[1] = GREEN_COLOUR+" "+TRIANGLE_FILE_STRING;
+        triangleColourArr[2] = BLUE_COLOUR+" "+TRIANGLE_FILE_STRING;
+        triangleColourArr[3] = MAGENTA_COLOUR+" "+TRIANGLE_FILE_STRING;
 
         hexColourArr = new String[4];
-        hexColourArr[0] = "red hexagon.png";
-        hexColourArr[1] = "green hexagon.png";
-        hexColourArr[2] = "blue hexagon.png";
-        hexColourArr[3] = "magenta hexagon.png";
+        hexColourArr[0] = RED_COLOUR+" "+HEXAGON_FILE_STRING;
+        hexColourArr[1] = GREEN_COLOUR+" "+HEXAGON_FILE_STRING;
+        hexColourArr[2] = BLUE_COLOUR+" "+HEXAGON_FILE_STRING;
+        hexColourArr[3] = MAGENTA_COLOUR+" "+HEXAGON_FILE_STRING;
 
 
         //colour names for slots
         diamondSlotColourArr = new String[4];
-        diamondSlotColourArr[0] = "bluediamondslot";
-        diamondSlotColourArr[1] = "greendiamondslot";
-        diamondSlotColourArr[2] = "magentadiamondslot";
-        diamondSlotColourArr[3] = "reddiamondslot";
+        diamondSlotColourArr[0] = RED_COLOUR+DIAMOND_FILE_STRING;
+        diamondSlotColourArr[1] = GREEN_COLOUR+DIAMOND_FILE_STRING;
+        diamondSlotColourArr[2] = BLUE_COLOUR+DIAMOND_FILE_STRING;
+        diamondSlotColourArr[3] = MAGENTA_COLOUR+DIAMOND_FILE_STRING;
 
         triangleSlotColourArr = new String[4];
-        triangleSlotColourArr[0] = "bluetriangleslot";
-        triangleSlotColourArr[1] = "greentriangleslot";
-        triangleSlotColourArr[2] = "magentatriangleslot";
-        triangleSlotColourArr[3] = "redtriangleslot";
+        triangleSlotColourArr[0] = RED_COLOUR+TRIANGLE_FILE_STRING;
+        triangleSlotColourArr[1] = GREEN_COLOUR+TRIANGLE_FILE_STRING;
+        triangleSlotColourArr[2] = BLUE_COLOUR+TRIANGLE_FILE_STRING;
+        triangleSlotColourArr[3] = MAGENTA_COLOUR+TRIANGLE_FILE_STRING;
 
         hexSlotColourArr = new String[4];
-        hexSlotColourArr[0] = "bluehexagonslot";
-        hexSlotColourArr[1] = "greenhexagonslot";
-        hexSlotColourArr[2] = "magentahexagonslot";
-        hexSlotColourArr[3] = "redhexagonslot";
+        hexSlotColourArr[0] = RED_COLOUR+HEXAGON_FILE_STRING;
+        hexSlotColourArr[1] = GREEN_COLOUR+HEXAGON_FILE_STRING;
+        hexSlotColourArr[2] = BLUE_COLOUR+HEXAGON_FILE_STRING;
+        hexSlotColourArr[3] = MAGENTA_COLOUR+HEXAGON_FILE_STRING;
 
 
         //choose a random colour from the array, also set it as current colour
@@ -140,9 +151,9 @@ public class PlayScreen implements Screen {
 
 
         //instatiate all three shapes
-        diamond = new ShapeObject(diamondColour, DIAMOND_POS.x, DIAMOND_POS.y, 0.35f);
-        triangle = new ShapeObject(triangleColour, TRIANGLE_POS.x, TRIANGLE_POS.y, 0.35f);
-        hexagon = new ShapeObject(hexColour, HEX_POS.x, HEX_POS.y, 0.35f);
+        diamond = new Shape(diamondColour, DIAMOND_POS.x, DIAMOND_POS.y, 0.35f);
+        triangle = new Shape(triangleColour, TRIANGLE_POS.x, TRIANGLE_POS.y, 0.35f);
+        hexagon = new Shape(hexColour, HEX_POS.x, HEX_POS.y, 0.35f);
 
 
         //set the original position of the objects
@@ -214,7 +225,7 @@ public class PlayScreen implements Screen {
 
     public void addScore() {
         score++;
-        isScoreShowable = true;
+
 
 
     }

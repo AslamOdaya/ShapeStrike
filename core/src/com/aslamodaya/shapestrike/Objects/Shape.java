@@ -1,27 +1,50 @@
 package com.aslamodaya.shapestrike.Objects;
 
 
+import com.aslamodaya.shapestrike.ShapeStrike;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 
 /**
  * Created by Aslam on 09/06/2016.
  */
-public class ShapeObject {
+public class Shape {
+
+    public enum ShapeType {
+        DIAMOND, TRIANGLE, HEXAGON
+
+    }
 
     private Texture texture;
     private float x;
     private float y;
     private float scaleRatio;
+    private ShapeType shapeType;
+
+    private final Vector2 TRIANGLE_POS = new Vector2((ShapeStrike.WIDTH / 2) - 200, ShapeStrike.HEIGHT + 30);
+    private final Vector2 DIAMOND_POS = new Vector2(ShapeStrike.WIDTH / 2 - 30, ShapeStrike.HEIGHT + 30);
+    private final Vector2 HEX_POS = new Vector2((ShapeStrike.WIDTH) - 100, ShapeStrike.HEIGHT + 30);
 
 
-    public ShapeObject(String textureName, float x, float y, float scaleRatio) {
+    public Shape(String textureName, float x, float y, float scaleRatio) {
+
+
         texture = new Texture(textureName);
         this.x = x;
         this.y = y;
-        this.scaleRatio = scaleRatio;
+        this.scaleRatio = 0.35f;
 
+
+    }
+
+
+    public void selectShapeType() {
+        switch(shapeType){
+            case DIAMOND:
+
+        }
 
     }
 
@@ -51,18 +74,15 @@ public class ShapeObject {
         return texture.getHeight();
     }
 
-    public void setY(float y)
-    {
+    public void setY(float y) {
         this.y = y;
     }
 
-    public float getY()
-    {
+    public float getY() {
         return y;
     }
 
-    public float getX()
-    {
+    public float getX() {
         return x;
     }
 
