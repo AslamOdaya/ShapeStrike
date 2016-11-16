@@ -1,4 +1,4 @@
-package com.aslamodaya.shapestrike.Screen;
+package com.aslamodaya.shapestrike.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

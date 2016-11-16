@@ -1,7 +1,7 @@
-package com.aslamodaya.shapestrike.Screen;
+package com.aslamodaya.shapestrike.Screens;
 
 import com.aslamodaya.shapestrike.Objects.Shape;
-import com.aslamodaya.shapestrike.Objects.ShapeSlot;
+import com.aslamodaya.shapestrike.Objects.SlotButton;
 import com.aslamodaya.shapestrike.ShapeStrike;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -42,7 +42,7 @@ public class PlayScreen implements Screen {
     private String diamondColour, hexColour, triangleColour, diamondSlotName, triangleSlotName, hexSlotName;
     private Stage stage;
     private Button diamondButton, triangleButton, hexButton;
-    private ShapeSlot diamondSlot, triangleSlot, hexSlot;
+    private SlotButton diamondSlot, triangleSlot, hexSlot;
     private Rectangle diamondBox, diamondSltBox, triangleBox, triangleSltBox, hexBox, hexSltBox;
     private String scoreStr;
     private BitmapFont font;
@@ -169,7 +169,7 @@ public class PlayScreen implements Screen {
         int slotHeight = slotWidth;
 
         //diamond slots
-        diamondSlot = new ShapeSlot("diamondslots.pack", stage, diamondSlotName);
+        diamondSlot = new SlotButton("diamondslots.pack", stage, diamondSlotName);
         diamondButton = diamondSlot.getButton();
 
         //diamond slot transformation
@@ -178,7 +178,7 @@ public class PlayScreen implements Screen {
         diamondButton.setHeight(slotHeight);
 
         //triangle slot
-        triangleSlot = new ShapeSlot("triangleslot.pack", stage, triangleSlotName);
+        triangleSlot = new SlotButton("triangleslot.pack", stage, triangleSlotName);
         triangleButton = triangleSlot.getButton();
 
         //triangle slot transformation
@@ -187,7 +187,7 @@ public class PlayScreen implements Screen {
         triangleButton.setHeight(slotHeight);
 
         //hex slot
-        hexSlot = new ShapeSlot("hexagonslot.pack", stage, hexSlotName);
+        hexSlot = new SlotButton("hexagonslot.pack", stage, hexSlotName);
         hexButton = hexSlot.getButton();
         //hexagon slot transformation
         hexButton.setPosition(355, -10);

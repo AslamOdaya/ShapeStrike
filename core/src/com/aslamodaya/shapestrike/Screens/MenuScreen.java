@@ -1,4 +1,4 @@
-package com.aslamodaya.shapestrike.Screen;
+package com.aslamodaya.shapestrike.Screens;
 
 import com.aslamodaya.shapestrike.Objects.Shape;
 import com.aslamodaya.shapestrike.ShapeStrike;
