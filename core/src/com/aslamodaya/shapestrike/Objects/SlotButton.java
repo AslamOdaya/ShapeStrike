@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 /**
  * Created by Aslam on 27/08/2016.
  */
-public class ShapeSlot {
+public class SlotButton {
 
     private Skin skin;
     private TextureAtlas atlas;
@@ -19,7 +19,7 @@ public class ShapeSlot {
     private Stage stage;
     private Button button;
 
-    public ShapeSlot(String pack, Stage stage, String slot) {
+    public SlotButton(String pack, Stage stage, String slot) {
         this.stage = stage;
         slotShape = slot;
         packName = pack;

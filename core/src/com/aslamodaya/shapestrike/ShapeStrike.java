@@ -2,7 +2,7 @@ package com.aslamodaya.shapestrike;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.aslamodaya.shapestrike.Screen.MenuScreen;
+import com.aslamodaya.shapestrike.Screens.MenuScreen;
 
 public class ShapeStrike extends Game {
     public SpriteBatch batch;
