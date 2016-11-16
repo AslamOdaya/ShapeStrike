@@ -2,6 +2,7 @@ package com.aslamodaya.shapestrike.Objects;
 
 
 import com.aslamodaya.shapestrike.ShapeStrike;
+import com.aslamodaya.shapestrike.Tools.ShapeType;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -11,11 +12,6 @@ import com.badlogic.gdx.math.Vector2;
  * Created by Aslam on 09/06/2016.
  */
 public class Shape {
-
-    public enum ShapeType {
-        DIAMOND, TRIANGLE, HEXAGON
-
-    }
 
     private Texture texture;
     private float x;
