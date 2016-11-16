@@ -2,7 +2,7 @@ package com.aslamodaya.shapestrike.Objects;
 
 
 import com.aslamodaya.shapestrike.ShapeStrike;
-import com.aslamodaya.shapestrike.Tools.ShapeType;
+import com.aslamodaya.shapestrike.States.ShapeState;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -17,7 +17,7 @@ public class Shape {
     private float x;
     private float y;
     private float scaleRatio;
-    private ShapeType shapeType;
+    private ShapeState shapeState;
 
     private final Vector2 TRIANGLE_POS = new Vector2((ShapeStrike.WIDTH / 2) - 200, ShapeStrike.HEIGHT + 30);
     private final Vector2 DIAMOND_POS = new Vector2(ShapeStrike.WIDTH / 2 - 30, ShapeStrike.HEIGHT + 30);
@@ -34,7 +34,7 @@ public class Shape {
     }
 
     public void selectShapeType() {
-        switch (shapeType) {
+        switch (shapeState) {
             case DIAMOND:
 
         }

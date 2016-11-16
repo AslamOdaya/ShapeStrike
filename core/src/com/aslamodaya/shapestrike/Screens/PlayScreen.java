@@ -3,6 +3,8 @@ package com.aslamodaya.shapestrike.Screens;
 import com.aslamodaya.shapestrike.Objects.Shape;
 import com.aslamodaya.shapestrike.Objects.SlotButton;
 import com.aslamodaya.shapestrike.ShapeStrike;
+import com.aslamodaya.shapestrike.States.ColourState;
+import com.aslamodaya.shapestrike.States.ShapeState;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -25,6 +27,15 @@ import java.util.Random;
 
 public class PlayScreen implements Screen {
 
+    private static final String FILE_TYPE = ".png";
+    private static final String SLOT = "slot";
+    private static String[] diamondColourArr = new String[ColourState.values().length];
+    private static String[] triangleColourArr = new String[ColourState.values().length];
+    private static String[] hexColourArr = new String[ColourState.values().length];
+    private static String[] diamondSlotColourArr = new String[ColourState.values().length];
+    private static String[] triangleSlotColourArr = new String[ColourState.values().length];
+    private static String[] hexSlotColourArr = new String[ColourState.values().length];
+
     private static final int INDEX_MAX = 3;
     private Texture background, slotBackground;
     private ShapeStrike game;
@@ -37,8 +48,6 @@ public class PlayScreen implements Screen {
     private boolean renderObjects[], isRunOnceDia, isRunOnceTri, isRunOnceHex, isScoreShowable;
     private int renderIndex, diamondIndex, triangleIndex, hexIndex;
     private int previousRandNum, score;
-    private String[] diamondColourArr, triangleColourArr, hexColourArr, diamondSlotColourArr,
-            triangleSlotColourArr, hexSlotColourArr, colours;
     private String diamondColour, hexColour, triangleColour, diamondSlotName, triangleSlotName, hexSlotName;
     private Stage stage;
     private Button diamondButton, triangleButton, hexButton;
@@ -46,20 +55,11 @@ public class PlayScreen implements Screen {
     private Rectangle diamondBox, diamondSltBox, triangleBox, triangleSltBox, hexBox, hexSltBox;
     private String scoreStr;
     private BitmapFont font;
-    private final String RED_COLOUR = "red";
-    private final String GREEN_COLOUR = "green";
-    private final String BLUE_COLOUR = "blue";
-    private final String MAGENTA_COLOUR = "magenta";
-    private final String DIAMOND_FILE_STRING = "diamond.png";
-    private final String TRIANGLE_FILE_STRING = "triangle.png";
-    private final String HEXAGON_FILE_STRING = "hexagon.png";
-    private final String DIAMOND_SLOT_FILE_STRING = "diamondslot";
-    private final String TRIANGLE_SLOT_FILE_STRING = "triangleslot";
-    private final String HEXAGON_SLOT_FILE_STRING = "hexagonslot";
 
 
     public PlayScreen(ShapeStrike game) {
         this.game = game;
+        initialiseArrays();
 
         random = new Random();
 
@@ -79,49 +79,6 @@ public class PlayScreen implements Screen {
         TRIANGLE_POS = new Vector2(ShapeStrike.WIDTH / 2 - 30, ShapeStrike.HEIGHT + 30);
         HEX_POS = new Vector2((ShapeStrike.WIDTH) - 100, ShapeStrike.HEIGHT + 30);
 
-        colours = new String[4];
-        colours[0] = RED_COLOUR;
-        colours[1] = GREEN_COLOUR;
-        colours[2] = BLUE_COLOUR;
-        colours[3] = MAGENTA_COLOUR;
-
-        // colour names into arrays.
-        diamondColourArr = new String[4];
-        diamondColourArr[0] = RED_COLOUR + " " + DIAMOND_FILE_STRING;
-        diamondColourArr[1] = GREEN_COLOUR + " " + DIAMOND_FILE_STRING;
-        diamondColourArr[2] = BLUE_COLOUR + " " + DIAMOND_FILE_STRING;
-        diamondColourArr[3] = MAGENTA_COLOUR + " " + DIAMOND_FILE_STRING;
-
-        triangleColourArr = new String[4];
-        triangleColourArr[0] = RED_COLOUR + " " + TRIANGLE_FILE_STRING;
-        triangleColourArr[1] = GREEN_COLOUR + " " + TRIANGLE_FILE_STRING;
-        triangleColourArr[2] = BLUE_COLOUR + " " + TRIANGLE_FILE_STRING;
-        triangleColourArr[3] = MAGENTA_COLOUR + " " + TRIANGLE_FILE_STRING;
-
-        hexColourArr = new String[4];
-        hexColourArr[0] = RED_COLOUR + " " + HEXAGON_FILE_STRING;
-        hexColourArr[1] = GREEN_COLOUR + " " + HEXAGON_FILE_STRING;
-        hexColourArr[2] = BLUE_COLOUR + " " + HEXAGON_FILE_STRING;
-        hexColourArr[3] = MAGENTA_COLOUR + " " + HEXAGON_FILE_STRING;
-
-        //colour names for slots
-        diamondSlotColourArr = new String[4];
-        diamondSlotColourArr[0] = RED_COLOUR+DIAMOND_SLOT_FILE_STRING;
-        diamondSlotColourArr[1] = GREEN_COLOUR+DIAMOND_SLOT_FILE_STRING;
-        diamondSlotColourArr[2] = BLUE_COLOUR+DIAMOND_SLOT_FILE_STRING;
-        diamondSlotColourArr[3] = MAGENTA_COLOUR+DIAMOND_SLOT_FILE_STRING;
-
-        triangleSlotColourArr = new String[4];
-        triangleSlotColourArr[0] = RED_COLOUR+TRIANGLE_SLOT_FILE_STRING;
-        triangleSlotColourArr[1] = GREEN_COLOUR+TRIANGLE_SLOT_FILE_STRING;
-        triangleSlotColourArr[2] = BLUE_COLOUR+TRIANGLE_SLOT_FILE_STRING;
-        triangleSlotColourArr[3] = MAGENTA_COLOUR+TRIANGLE_SLOT_FILE_STRING;
-
-        hexSlotColourArr = new String[4];
-        hexSlotColourArr[0] = RED_COLOUR+HEXAGON_SLOT_FILE_STRING;
-        hexSlotColourArr[1] = GREEN_COLOUR+HEXAGON_SLOT_FILE_STRING;
-        hexSlotColourArr[2] = BLUE_COLOUR+HEXAGON_SLOT_FILE_STRING;
-        hexSlotColourArr[3] = MAGENTA_COLOUR+HEXAGON_SLOT_FILE_STRING;
 
         for(int i = 0; i < diamondSlotColourArr.length; i++){
             System.out.println(diamondSlotColourArr[i]);
@@ -212,6 +169,17 @@ public class PlayScreen implements Screen {
 
         //score system
         score = 0;
+    }
+
+    public void initialiseArrays(){
+        for(int i = 0; i < ColourState.values().length; i++){
+            diamondColourArr[i] = ColourState.values()[i].key() + " " + ShapeState.DIAMOND.key() + FILE_TYPE;
+            triangleColourArr[i] = ColourState.values()[i].key() + " " + ShapeState.TRIANGLE.key() + FILE_TYPE;
+            hexColourArr[i] = ColourState.values()[i].key() + " " + ShapeState.HEXAGON.key() + FILE_TYPE;
+            diamondSlotColourArr[i] = ColourState.values()[i].key() + ShapeState.DIAMOND.key() + SLOT;
+            triangleSlotColourArr[i] = ColourState.values()[i].key() + ShapeState.TRIANGLE.key() + SLOT;
+            hexSlotColourArr[i] = ColourState.values()[i].key() + ShapeState.HEXAGON.key() + SLOT;
+        }
     }
 
     public void addScore() {
@@ -419,7 +387,7 @@ public class PlayScreen implements Screen {
 
 
         game.batch.begin();
-        //render if the value in the index is true (for diamond)
+        //render if the key in the index is true (for diamond)
         if (renderObjects[0]) {
 
             diamond.render(game.batch);
@@ -436,7 +404,7 @@ public class PlayScreen implements Screen {
             }
         }
 
-        //render if the value in the index is true (for triangle)
+        //render if the key in the index is true (for triangle)
         else if (renderObjects[1]) {
             triangle.render(game.batch);
 
@@ -448,7 +416,7 @@ public class PlayScreen implements Screen {
 
             }
         }
-        //render if the value in the index is true (for hexagon)
+        //render if the key in the index is true (for hexagon)
         else if (renderObjects[2]) {
             hexagon.render(game.batch);
 
