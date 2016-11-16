@@ -30,47 +30,38 @@ public class Shape {
 
     public Shape(String textureName, float x, float y, float scaleRatio) {
 
-
         texture = new Texture(textureName);
         this.x = x;
         this.y = y;
         this.scaleRatio = 0.35f;
 
-
     }
 
-
     public void selectShapeType() {
-        switch(shapeType){
+        switch (shapeType) {
             case DIAMOND:
 
         }
 
     }
 
-
     public void render(SpriteBatch batch) {
         batch.draw(texture, x, y, (texture.getWidth() * scaleRatio), (texture.getHeight() * scaleRatio));
-
     }
 
     public void setTexture(String textureName) {
-
         texture = new Texture(textureName);
     }
 
     public void dispose() {
-
         texture.dispose();
     }
 
     public float getWidth() {
-
         return texture.getWidth();
     }
 
     public float getHeight() {
-
         return texture.getHeight();
     }
 

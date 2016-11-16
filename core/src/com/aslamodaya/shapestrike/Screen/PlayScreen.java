@@ -53,12 +53,9 @@ public class PlayScreen implements Screen {
     private final String DIAMOND_FILE_STRING = "diamond.png";
     private final String TRIANGLE_FILE_STRING = "triangle.png";
     private final String HEXAGON_FILE_STRING = "hexagon.png";
-
-
-
-
-
-
+    private final String DIAMOND_SLOT_FILE_STRING = "diamondslot";
+    private final String TRIANGLE_SLOT_FILE_STRING = "triangleslot";
+    private final String HEXAGON_SLOT_FILE_STRING = "hexagonslot";
 
 
     public PlayScreen(ShapeStrike game) {
@@ -73,11 +70,9 @@ public class PlayScreen implements Screen {
 
         stage = new Stage(viewport); // pass in "viewport" to resize objects on different resolution
 
-
         background = new Texture("background.png");
         slotBackground = new Texture("slotbg.png");
         font = new BitmapFont(Gdx.files.internal("myfont.fnt"));
-
 
         // three shape positions
         DIAMOND_POS = new Vector2((ShapeStrike.WIDTH / 2) - 200, ShapeStrike.HEIGHT + 30);
@@ -90,45 +85,47 @@ public class PlayScreen implements Screen {
         colours[2] = BLUE_COLOUR;
         colours[3] = MAGENTA_COLOUR;
 
-
         // colour names into arrays.
         diamondColourArr = new String[4];
-        diamondColourArr[0] = RED_COLOUR + " "+DIAMOND_FILE_STRING ;
-        diamondColourArr[1] = GREEN_COLOUR + " "+DIAMOND_FILE_STRING;
-        diamondColourArr[2] = BLUE_COLOUR+ " "+DIAMOND_FILE_STRING;
-        diamondColourArr[3] = MAGENTA_COLOUR+" "+DIAMOND_FILE_STRING;
+        diamondColourArr[0] = RED_COLOUR + " " + DIAMOND_FILE_STRING;
+        diamondColourArr[1] = GREEN_COLOUR + " " + DIAMOND_FILE_STRING;
+        diamondColourArr[2] = BLUE_COLOUR + " " + DIAMOND_FILE_STRING;
+        diamondColourArr[3] = MAGENTA_COLOUR + " " + DIAMOND_FILE_STRING;
 
         triangleColourArr = new String[4];
-        triangleColourArr[0] = RED_COLOUR+" "+TRIANGLE_FILE_STRING;
-        triangleColourArr[1] = GREEN_COLOUR+" "+TRIANGLE_FILE_STRING;
-        triangleColourArr[2] = BLUE_COLOUR+" "+TRIANGLE_FILE_STRING;
-        triangleColourArr[3] = MAGENTA_COLOUR+" "+TRIANGLE_FILE_STRING;
+        triangleColourArr[0] = RED_COLOUR + " " + TRIANGLE_FILE_STRING;
+        triangleColourArr[1] = GREEN_COLOUR + " " + TRIANGLE_FILE_STRING;
+        triangleColourArr[2] = BLUE_COLOUR + " " + TRIANGLE_FILE_STRING;
+        triangleColourArr[3] = MAGENTA_COLOUR + " " + TRIANGLE_FILE_STRING;
 
         hexColourArr = new String[4];
-        hexColourArr[0] = RED_COLOUR+" "+HEXAGON_FILE_STRING;
-        hexColourArr[1] = GREEN_COLOUR+" "+HEXAGON_FILE_STRING;
-        hexColourArr[2] = BLUE_COLOUR+" "+HEXAGON_FILE_STRING;
-        hexColourArr[3] = MAGENTA_COLOUR+" "+HEXAGON_FILE_STRING;
-
+        hexColourArr[0] = RED_COLOUR + " " + HEXAGON_FILE_STRING;
+        hexColourArr[1] = GREEN_COLOUR + " " + HEXAGON_FILE_STRING;
+        hexColourArr[2] = BLUE_COLOUR + " " + HEXAGON_FILE_STRING;
+        hexColourArr[3] = MAGENTA_COLOUR + " " + HEXAGON_FILE_STRING;
 
         //colour names for slots
         diamondSlotColourArr = new String[4];
-        diamondSlotColourArr[0] = RED_COLOUR+DIAMOND_FILE_STRING;
-        diamondSlotColourArr[1] = GREEN_COLOUR+DIAMOND_FILE_STRING;
-        diamondSlotColourArr[2] = BLUE_COLOUR+DIAMOND_FILE_STRING;
-        diamondSlotColourArr[3] = MAGENTA_COLOUR+DIAMOND_FILE_STRING;
+        diamondSlotColourArr[0] = RED_COLOUR+DIAMOND_SLOT_FILE_STRING;
+        diamondSlotColourArr[1] = GREEN_COLOUR+DIAMOND_SLOT_FILE_STRING;
+        diamondSlotColourArr[2] = BLUE_COLOUR+DIAMOND_SLOT_FILE_STRING;
+        diamondSlotColourArr[3] = MAGENTA_COLOUR+DIAMOND_SLOT_FILE_STRING;
 
         triangleSlotColourArr = new String[4];
-        triangleSlotColourArr[0] = RED_COLOUR+TRIANGLE_FILE_STRING;
-        triangleSlotColourArr[1] = GREEN_COLOUR+TRIANGLE_FILE_STRING;
-        triangleSlotColourArr[2] = BLUE_COLOUR+TRIANGLE_FILE_STRING;
-        triangleSlotColourArr[3] = MAGENTA_COLOUR+TRIANGLE_FILE_STRING;
+        triangleSlotColourArr[0] = RED_COLOUR+TRIANGLE_SLOT_FILE_STRING;
+        triangleSlotColourArr[1] = GREEN_COLOUR+TRIANGLE_SLOT_FILE_STRING;
+        triangleSlotColourArr[2] = BLUE_COLOUR+TRIANGLE_SLOT_FILE_STRING;
+        triangleSlotColourArr[3] = MAGENTA_COLOUR+TRIANGLE_SLOT_FILE_STRING;
 
         hexSlotColourArr = new String[4];
-        hexSlotColourArr[0] = RED_COLOUR+HEXAGON_FILE_STRING;
-        hexSlotColourArr[1] = GREEN_COLOUR+HEXAGON_FILE_STRING;
-        hexSlotColourArr[2] = BLUE_COLOUR+HEXAGON_FILE_STRING;
-        hexSlotColourArr[3] = MAGENTA_COLOUR+HEXAGON_FILE_STRING;
+        hexSlotColourArr[0] = RED_COLOUR+HEXAGON_SLOT_FILE_STRING;
+        hexSlotColourArr[1] = GREEN_COLOUR+HEXAGON_SLOT_FILE_STRING;
+        hexSlotColourArr[2] = BLUE_COLOUR+HEXAGON_SLOT_FILE_STRING;
+        hexSlotColourArr[3] = MAGENTA_COLOUR+HEXAGON_SLOT_FILE_STRING;
+
+        for(int i = 0; i < diamondSlotColourArr.length; i++){
+            System.out.println(diamondSlotColourArr[i]);
+        }
 
 
         //choose a random colour from the array, also set it as current colour
@@ -136,7 +133,6 @@ public class PlayScreen implements Screen {
         triangleColour = triangleColourArr[chooseRandomNum(4)];
         hexColour = hexColourArr[chooseRandomNum(4)];
         diamondColour = diamondColourArr[chooseRandomNum(4)];
-
 
         //choose random slot colour
         diamondIndex = chooseRandomNum(4);
@@ -148,7 +144,6 @@ public class PlayScreen implements Screen {
         hexIndex = chooseRandomNum(4);
         System.out.println("hex index " + hexIndex);
         hexSlotName = hexSlotColourArr[hexIndex];
-
 
         //instatiate all three shapes
         diamond = new Shape(diamondColour, DIAMOND_POS.x, DIAMOND_POS.y, 0.35f);
@@ -162,7 +157,6 @@ public class PlayScreen implements Screen {
         hexGravity = HEX_POS.y;
 
         renderObjects = new boolean[3];
-
 
         //assign randomm index number from 0-2;
         renderIndex = chooseRandomNum(3);
@@ -211,7 +205,6 @@ public class PlayScreen implements Screen {
         triangleSltBox = new Rectangle(triangleButton.getX(), triangleButton.getY(),
                 triangleButton.getWidth(), triangleButton.getHeight());
 
-
         //hexagon and hexagon slot collision detection
         hexBox = new Rectangle(hexagon.getX(), hexagon.getY(), hexagon.getWidth(), hexagon.getHeight());
         hexSltBox = new Rectangle(hexButton.getX(), hexButton.getY(), hexButton.getWidth(), hexButton.getHeight());
@@ -219,15 +212,10 @@ public class PlayScreen implements Screen {
 
         //score system
         score = 0;
-
-
     }
 
     public void addScore() {
         score++;
-
-
-
     }
 
 
@@ -237,7 +225,6 @@ public class PlayScreen implements Screen {
 
         if (previousRandNum == randomNum) {
             randomNum = chooseRandomNum(maxNum);
-
         }
 
         previousRandNum = randomNum;
@@ -263,7 +250,6 @@ public class PlayScreen implements Screen {
         boolean isTriangleOverlapping = triangleBox.overlaps(triangleSltBox);
         boolean isHexOverlapping = hexBox.overlaps(hexSltBox);
 
-
         //let object fall if it is rendered.
         if (renderObjects[0]) {
 
@@ -277,7 +263,6 @@ public class PlayScreen implements Screen {
              * Finally render a random object.
              * CURRENTLY THERE IS A  BUG WHERE SHAPE IS SHOWN FOR A SPLIT SECOND FOR THE LAST COLLIDED SHAPE AFTER NEW SHAPE IS RENDERED
              */
-
 
             if (isDiamondOverlapping && !isRunOnceDia) {
                 //split the texture name to only get colour i.e "red diamond";
@@ -293,30 +278,23 @@ public class PlayScreen implements Screen {
                     renderIndex = chooseRandomNum(3);
                     renderObjects[renderIndex] = true;
                     addScore();
-
-
                 }
                 //if it's not same, show game over screen.
                 else {
-
                     game.setScreen(new GameOverScreen(game));
                     this.dispose();
                 }
             }
         }
-
-
         //let object fall if it is rendered.
         if (renderObjects[1]) {
             //decrease position of triangle and set the new position for each frame.
             triangleGravity -= delta * velocity;
             triangle.setY(triangleGravity);
 
-
             //triangle colour is the same as the shape. checks if it both shape names contain the same colour
             if (isTriangleOverlapping && !isRunOnceTri) {
                 isRunOnceTri = true;
-
 
                 //split the texture  to only get colour i.e "red diamond";
                 String colour[] = triangleColour.split(" ");
